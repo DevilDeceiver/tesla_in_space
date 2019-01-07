@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     {
     }
 
+    //U enemy spawner objactu moras staviti visok spawn rate ako zelis da se enemyi sporo spawnaju!
     // Update is called once per frame
     void Update()
     {
