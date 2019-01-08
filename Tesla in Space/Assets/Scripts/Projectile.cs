@@ -24,4 +24,10 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void OnBecameInvisible()
+    {
+        // Unisti projektil 
+        Destroy(gameObject);
+    }
+
 }
