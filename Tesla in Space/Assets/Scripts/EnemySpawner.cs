@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
+    //player koji se kaznjava ako se ne unissti meteor
+    public GameObject player;
+
+    //timer za val
+
     public GameObject enemy;
     float randX;
     Vector2 whereToSpawn;
@@ -22,9 +27,13 @@ public class EnemySpawner : MonoBehaviour
         if(Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            randX = Random.Range(-8.4f, 8.4f);
+            randX = Random.Range(-6f, 6f);
             whereToSpawn = new Vector2(randX, transform.position.y);
             Instantiate(enemy, whereToSpawn, Quaternion.identity);
         }
     }
+
+    
+
+
 }
