@@ -923,7 +923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1521964940}
   enemy: {fileID: 7389933055135280536, guid: dff4bbd2dd7e4d241b7bf7d25647cb50, type: 3}
-  spawnRate: 5
+  spawnRate: 1
 --- !u!4 &1712261897
 Transform:
   m_ObjectHideFlags: 0
