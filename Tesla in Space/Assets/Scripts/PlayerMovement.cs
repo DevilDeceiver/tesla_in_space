@@ -32,4 +32,28 @@ public class PlayerMovement : MonoBehaviour
         //Pokretanje broda
         rb2d.velocity = movement * speed;
     }
+    void OnTriggerEnter2D(Collider2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Down")
+        {
+            rb2d.position = new Vector2(rb2d.position.x, -4.9f/*rb2d.position.y + 1f*/);
+        }
+
+        if (hitInfo.gameObject.tag == "left")
+        {
+            rb2d.position = new Vector2(-6.2f,rb2d.position.y);
+        }
+
+        if (hitInfo.gameObject.tag == "right")
+        {
+            rb2d.position = new Vector2(6.2f, rb2d.position.y);
+        }
+    }
+    /*void OnCollision(Collider other)
+    {
+        if (other.tag=="Down")
+        { //rb2d.velocity = new Vector2(0, 5); 
+            rb2d.position = new Vector2(0, 0);
+        }
+    }*/
 }

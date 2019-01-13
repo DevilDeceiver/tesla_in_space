@@ -18,8 +18,9 @@ public class Score : MonoBehaviour
     {
         instance = this;
         brojBodova = 0;
-        rezultatText.text = "Score: " + brojBodova + ".";
-        
+        rezultatText.text = "Score: " + brojBodova;
+        healthSlider.value = PlayerController.instance.health;
+
     }
 
 
