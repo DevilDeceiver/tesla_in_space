@@ -11,7 +11,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         instance = this;
-        Score.instance.healthSlider.value = health;
     }
 
     
