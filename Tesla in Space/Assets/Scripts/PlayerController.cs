@@ -10,9 +10,28 @@ public class PlayerController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        health = 100.0f;
         instance = this;
     }
 
-    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+
+        }
+    }
+
+    void Die()
+    {
+        // dodati gameover tekst i sve to
+        Destroy(gameObject);
+        Score.instance.brojBodova = 0;
+        Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
+    }
+
+
 
 }

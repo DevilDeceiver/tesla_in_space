@@ -15,8 +15,22 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter2D (Collider2D hitInfo)
     {
+
         Debug.Log(hitInfo.name);
+
+        //da se ne sudara sa colliderom od igraca
+        if (hitInfo.gameObject.name == "Player")
+        {
+            return;
+        }
+
         Enemy enemy = hitInfo.GetComponent<Enemy>();
+        EnemyShip enemyShip = hitInfo.GetComponent<EnemyShip>();
+
+        if (enemyShip != null)
+        {
+            enemyShip.TakeDamage(damage);
+        }
         if (enemy != null)
         {
             enemy.TakeDamage(damage);
