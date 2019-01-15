@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (hitInfo.gameObject.tag == "Down")
         {
-            rb2d.position = new Vector2(rb2d.position.x, -4.9f/*rb2d.position.y + 1f*/);
+            rb2d.position = new Vector2(rb2d.position.x, -4.9f);
         }
 
         if (hitInfo.gameObject.tag == "left")
@@ -49,11 +49,4 @@ public class PlayerMovement : MonoBehaviour
             rb2d.position = new Vector2(6.2f, rb2d.position.y);
         }
     }
-    /*void OnCollision(Collider other)
-    {
-        if (other.tag=="Down")
-        { //rb2d.velocity = new Vector2(0, 5); 
-            rb2d.position = new Vector2(0, 0);
-        }
-    }*/
 }

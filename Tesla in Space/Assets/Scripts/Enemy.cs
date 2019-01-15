@@ -7,10 +7,6 @@ public class Enemy : MonoBehaviour
 {
     public int health = 20;
 
-    
-
-    
-
     //public GameObject deathEffect;
 
     public void TakeDamage (int damage)
@@ -47,10 +43,10 @@ public class Enemy : MonoBehaviour
             return;
         }
         Debug.Log("Collided With: " + hitInfo.gameObject.name);
-            PlayerController player = hitInfo.GetComponent<PlayerController>();
-            Destroy(gameObject);
-            PlayerController.instance.health -= 25;
-            Score.instance.healthSlider.value = PlayerController.instance.health;
+        //PlayerController player = hitInfo.GetComponent<PlayerController>();
+        Destroy(gameObject);
+        PlayerController.instance.health -= 25;
+        Score.instance.healthSlider.value = PlayerController.instance.health;
 
     }
 }
