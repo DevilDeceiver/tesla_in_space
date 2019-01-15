@@ -30,32 +30,29 @@ public class PathFollower : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         //random brzina kretanja po nodovima
-        MoveSpeed = Random.Range(1.5f, 2f);
+        MoveSpeed = Random.Range(1.2f, 1.5f);
         randomBroj = Random.Range(1, 5); // {1,4} ukljuceni brojevi
-        Debug.Log(randomBroj);
+        Debug.Log("Random broj putanje je : " + randomBroj);
         //random biranje putanje kretanja
         switch (randomBroj)
         {
             case 1:
                 PathNodeTEMP = PathNode;
                 brojNodeaPathTEMP = brojNodeaPath1;
-                Debug.Log("bio je 1");
                 break;
             case 2:
                 PathNodeTEMP = PathNode2;
                 brojNodeaPathTEMP = brojNodeaPath2;
-                Debug.Log("bio je 2");
                 break;
             case 3:
                 PathNodeTEMP = PathNode3;
                 brojNodeaPathTEMP = brojNodeaPath3;
-                Debug.Log("bio je 3");
                 break;
             case 4:
                 PathNodeTEMP = PathNode4;
                 brojNodeaPathTEMP = brojNodeaPath4;
-                Debug.Log("bio je 4");
                 break;
         }
         CheckNode();

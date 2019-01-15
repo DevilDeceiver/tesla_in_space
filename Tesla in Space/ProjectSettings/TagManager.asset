@@ -9,6 +9,10 @@ TagManager:
   - right
   - left
   - ENEMYship
+  - path1
+  - path2
+  - path3
+  - path4
   layers:
   - Default
   - TransparentFX

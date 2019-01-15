@@ -49,4 +49,5 @@ public class Enemy : MonoBehaviour
         Score.instance.healthSlider.value = PlayerController.instance.health;
 
     }
+
 }

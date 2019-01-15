@@ -18,11 +18,11 @@ public class EnemyShooting : MonoBehaviour
 
     IEnumerator coroutineA()
     {
-        // wait for 1 second
+
         while (true)
         {
-        //firerate
-        yield return new WaitForSeconds(0.3f);
+        //enemy ship firerate, 1000ms
+        yield return new WaitForSeconds(1f);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 180);
             Instantiate(projectilePrefab, firePointTEMP.position, firePoint.rotation);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 0);
