@@ -13,22 +13,23 @@ public class EnemyProjectile : MonoBehaviour
         rb.velocity = transform.up * speed;
 
     }
-
-
-
     void OnTriggerEnter2D(Collider2D hitInfo)
     {
 
-        Debug.Log("pogoden je:" + hitInfo.name);
+        //Debug.Log("pogoden je:" + hitInfo.name);
 
         //da se ne sudara sa vlastitim colliderom
         if (hitInfo.gameObject.tag == "ENEMYship")
         {
             return;
         }
+        //Enemy ship projektili se ne unistiavaju prilikom sudara sa projektilom naseg shipa
+        if (hitInfo.gameObject.name == "Projectile(Clone)")
+        {
+            return;
+        }
 
         PlayerController player = hitInfo.GetComponent<PlayerController>();
-
         if (player != null)
         {
             player.TakeDamage(damage);

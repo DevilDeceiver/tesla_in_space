@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Score.instance.healthSlider.value = health;
         if (health <= 0)
         {
             Die();
-
         }
     }
 
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     {
         // dodati gameover tekst i sve to
         Destroy(gameObject);
-        Score.instance.brojBodova = 0;
+        //Score.instance.brojBodova = 0;   <- brisanje broja bodova, bolje da ostanu bodovi?
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
     }
 

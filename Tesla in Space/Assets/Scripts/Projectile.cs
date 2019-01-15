@@ -16,14 +16,19 @@ public class Projectile : MonoBehaviour
     void OnTriggerEnter2D (Collider2D hitInfo)
     {
 
-        Debug.Log(hitInfo.name);
+       // Debug.Log(hitInfo.name);
 
         //da se ne sudara sa colliderom od igraca
         if (hitInfo.gameObject.name == "Player")
         {
             return;
         }
-
+        //projektil naseg shipa se ne unistava prilikom sudara sa neprijateljskim projektilom
+        if (hitInfo.gameObject.name == "Plazm(Clone)")
+        {
+            return;
+        }
+        
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         EnemyShip enemyShip = hitInfo.GetComponent<EnemyShip>();
 

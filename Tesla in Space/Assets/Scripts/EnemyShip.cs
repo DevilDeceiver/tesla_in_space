@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyShip : MonoBehaviour
 {
@@ -14,46 +15,44 @@ public class EnemyShip : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
+
+ 
+
     }
     public void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
+            Level2Controller.instance.PokreniSpawn();
             Die();
 
         }
     }
     void Die()
     {
+        StartCoroutine(Level2Controller.instance.coroutineB());
         Destroy(gameObject);
         Score.instance.brojBodova += 25;
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
-        
+            
     }
 
-    void Update()
+    //Izbjegavanje enemyShip collisiona, za sad beskorisno
+    void OnTriggerEnter2D(Collider2D hitInfo)
     {
-        timeLeft -= Time.deltaTime;
-        if (timeLeft <= 0)
+        //da se ne sudara sa colliderom od susjednih shipova
+        if (hitInfo.gameObject.tag == "ENEMYship")
         {
-            movement = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f));
-            timeLeft += accelerationTime;
+            return;
         }
     }
-
-    void FixedUpdate()
-    {
-        rb2d.AddForce(movement * maxSpeed);
-        //rb2d.position = new Vector2(0, -3);
-        //Debug.Log("Pomicanje2\n");
-    }
-
-
+       
 
 }
