@@ -24,13 +24,17 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.time > nextSpawn)
+        if(level1Controller.instance.timeLeft > 0)
         {
-            nextSpawn = Time.time + spawnRate;
-            randX = Random.Range(-6f, 6f);
-            whereToSpawn = new Vector2(randX, transform.position.y);
-            Instantiate(enemy, whereToSpawn, Quaternion.identity);
+            if(Time.time > nextSpawn)
+             {
+                  nextSpawn = Time.time + spawnRate;
+                  randX = Random.Range(-6f, 6f);
+                  whereToSpawn = new Vector2(randX, transform.position.y);
+                  Instantiate(enemy, whereToSpawn, Quaternion.identity);
+             }
         }
+        
     }
 
     

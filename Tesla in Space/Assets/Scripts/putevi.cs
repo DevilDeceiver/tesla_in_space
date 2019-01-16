@@ -25,15 +25,13 @@ public class putevi : MonoBehaviour
     int CurrentNode;
     private Vector2 startPosition;
 
-
-
-    // Use this for initialization
+  
     void Start()
     {
-        //Player.SetActive(true);
+
         //random brzina kretanja po nodovima
-        MoveSpeed = Random.Range(1.2f, 1.5f);
-        randomBroj = Random.Range(1, 1); // {1,4} ukljuceni brojevi
+        MoveSpeed = Random.Range(3.5f, 5.5f);
+        randomBroj = Random.Range(1, 5); // {1,4} ukljuceni brojevi
         Debug.Log("Random broj putanje je : " + randomBroj);
         //random biranje putanje kretanja
         switch (randomBroj)
@@ -62,7 +60,8 @@ public class putevi : MonoBehaviour
     {
         Timer = 0;
         startPosition = Player.transform.position;
-        if(CurrentNode == brojNodeaPathTEMP - 1)
+
+        if (CurrentNode == brojNodeaPathTEMP - 1)
         {
             CurrentNode = 0;
         }
@@ -78,7 +77,8 @@ public class putevi : MonoBehaviour
 
         if (Player.transform.position != CurrentPositionHolder)
         {
-            Player.transform.position = Vector3.Lerp(startPosition, CurrentPositionHolder, Timer);
+            //Player.transform.position = Vector3.Lerp(startPosition, CurrentPositionHolder, Timer);
+            Player.transform.position = Vector3.MoveTowards(startPosition, CurrentPositionHolder, Timer);
         }
         else
         {
@@ -90,5 +90,7 @@ public class putevi : MonoBehaviour
             }
         }
     }
+
+    
 
 }

@@ -7,11 +7,7 @@ public class EnemyShip : MonoBehaviour
 {
     public EnemyShip instance;
     public int health = 200;
-
-//public float accelerationTime = 2f;
-    //public float maxSpeed = 5f;
     private float timeLeft;
-    //private Vector2 movement;
 
     private Rigidbody2D rb2d;
 
@@ -24,6 +20,9 @@ public class EnemyShip : MonoBehaviour
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
 
+        if (gameObject.name == "ship2") {
+            health = 350;
+        }
 
 
     }
@@ -33,19 +32,21 @@ public class EnemyShip : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            //StartCoroutine("coroutineC", WaitTime);
             Die();
 
         }
     }
     void Die()
     {
-        Level2Controller.instance.PokreniSpawn();
-        //Destroy(gameObject);
-        gameObject.SetActive(false);
+        Destroy(gameObject);
+        PlayerController.instance.brojBrodovaLv2++;
         Score.instance.brojBodova += 25;
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
-            
+        
+        if (PlayerController.instance.brojBrodovaLv2 == 3)
+        {
+            //load scene 3
+        }
     }
 
     //Izbjegavanje enemyShip collisiona, za sad beskorisno

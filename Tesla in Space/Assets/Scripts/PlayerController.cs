@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float health = 100.0f;
+    public int brojBrodovaLv2 = 0;
     public static PlayerController instance;
 
     // Use this for initialization
