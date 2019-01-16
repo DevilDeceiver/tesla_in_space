@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyShip : MonoBehaviour
 {
@@ -11,20 +12,24 @@ public class EnemyShip : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
+    public Text gameCompleted;
 
     public float WaitTime = 2.0f;
 
 
     void Start()
     {
+        gameCompleted.text = "";
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
 
-        if (gameObject.name == "ship2") {
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "level2")
+        {
+           if (gameObject.name == "ship2") {
             health = 350;
+                }
         }
-
-
     }
 
     public void TakeDamage(int damage)
@@ -45,7 +50,7 @@ public class EnemyShip : MonoBehaviour
         
         if (PlayerController.instance.brojBrodovaLv2 == 3)
         {
-            //load scene 3
+            Level2Controller.instance.ucitajLevel3();
         }
     }
 

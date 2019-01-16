@@ -35,6 +35,7 @@ public class level1Controller : MonoBehaviour
 
     IEnumerator UcitajLevel2(float delay)
     {
+        PlayerPrefs.SetInt("Player Score", Score.instance.brojBodova);
         levelComplete.text = "LEVEL 1 COMPLETE";
         yield return new WaitForSeconds(delay);
         levelComplete.text = "";

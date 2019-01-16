@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         // dodati gameover tekst i sve to
         Destroy(gameObject);
-        //Score.instance.brojBodova = 0;   <- brisanje broja bodova, bolje da ostanu bodovi?
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
     }
 
