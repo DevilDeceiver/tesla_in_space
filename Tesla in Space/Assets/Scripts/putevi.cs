@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PathFollower : MonoBehaviour
+public class putevi : MonoBehaviour
 {
     //Hardkodiran broj node-ova unutar unitya
     public int brojNodeaPath1 = 0;
@@ -30,10 +30,10 @@ public class PathFollower : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        //Player.SetActive(true);
         //random brzina kretanja po nodovima
         MoveSpeed = Random.Range(1.2f, 1.5f);
-        randomBroj = Random.Range(1, 5); // {1,4} ukljuceni brojevi
+        randomBroj = Random.Range(1, 1); // {1,4} ukljuceni brojevi
         Debug.Log("Random broj putanje je : " + randomBroj);
         //random biranje putanje kretanja
         switch (randomBroj)

@@ -8,37 +8,41 @@ public class EnemyShip : MonoBehaviour
     public EnemyShip instance;
     public int health = 200;
 
-    public float accelerationTime = 2f;
-    public float maxSpeed = 5f;
+//public float accelerationTime = 2f;
+    //public float maxSpeed = 5f;
     private float timeLeft;
-    private Vector2 movement;
+    //private Vector2 movement;
 
     private Rigidbody2D rb2d;
 
-    
+
+    public float WaitTime = 2.0f;
+
 
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
 
- 
+
 
     }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
-            Level2Controller.instance.PokreniSpawn();
+            //StartCoroutine("coroutineC", WaitTime);
             Die();
 
         }
     }
     void Die()
     {
-        StartCoroutine(Level2Controller.instance.coroutineB());
-        Destroy(gameObject);
+        Level2Controller.instance.PokreniSpawn();
+        //Destroy(gameObject);
+        gameObject.SetActive(false);
         Score.instance.brojBodova += 25;
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
             
@@ -53,6 +57,7 @@ public class EnemyShip : MonoBehaviour
             return;
         }
     }
-       
+
+
 
 }

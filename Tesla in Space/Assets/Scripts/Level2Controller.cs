@@ -19,7 +19,7 @@ public class Level2Controller : MonoBehaviour
         if (scene.name == "level2")
         {
             Debug.Log("(trebao bi bit 2) - Active scene is '" + scene.name + "'.");
-            //
+           // StartCoroutine(coroutineB());
         }
     }
     public void PokreniSpawn()
@@ -31,8 +31,11 @@ public class Level2Controller : MonoBehaviour
     public IEnumerator coroutineB()
     {
             //enemy ship spawnRate
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(3f);
+            //Vector3 spawnPosition = new Vector3(transform.position.x, transform.position.y, 0f);
+            //Quaternion spawnRotation = Quaternion.identity;
             Instantiate(enemyShip, spawnPoint.position, spawnPoint.rotation);
+
     }
 
 }
