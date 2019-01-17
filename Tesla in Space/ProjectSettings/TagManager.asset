@@ -13,6 +13,7 @@ TagManager:
   - path2
   - path3
   - path4
+  - boss
   layers:
   - Default
   - TransparentFX

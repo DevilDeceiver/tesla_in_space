@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float health = 100.0f;
+    public int brojBrodovaLv2 = 0;
     public static PlayerController instance;
 
     // Use this for initialization
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
     {
         // dodati gameover tekst i sve to
         Destroy(gameObject);
-        //Score.instance.brojBodova = 0;   <- brisanje broja bodova, bolje da ostanu bodovi?
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
     }
 

@@ -2,37 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Level2Controller : MonoBehaviour
 {
     public static Level2Controller instance;
-    //stvaranje enemy shipova
-    public Transform spawnPoint;
-    public GameObject enemyShip;
+
+    public Text levelComplete;
 
     // Start is called before the first frame update
     void Start()
     {
+       // shipEnemy = GameObject.FindGameObjectWithTag("ENEMYship");
+
         //provjera naziva scene, ako je level2 onda poziva spawn enemyShipova
         Scene scene = SceneManager.GetActiveScene();
         instance = this;
         if (scene.name == "level2")
         {
             Debug.Log("(trebao bi bit 2) - Active scene is '" + scene.name + "'.");
-            //
+           
         }
     }
-    public void PokreniSpawn()
+    public void ucitajLevel3()
     {
-        StartCoroutine(coroutineB());
+        StartCoroutine(UcitajLevel3(3f));
     }
 
-    //spawn enemy shipova
-    public IEnumerator coroutineB()
+    IEnumerator UcitajLevel3(float delay)
     {
-            //enemy ship spawnRate
-            yield return new WaitForSeconds(2f);
-            Instantiate(enemyShip, spawnPoint.position, spawnPoint.rotation);
+        PlayerPrefs.SetInt("Player Score", Score.instance.brojBodova);
+        levelComplete.text = "LEVEL 2 COMPLETE";
+        yield return new WaitForSeconds(delay);
+        levelComplete.text = "";
+        SceneManager.LoadScene("level3");
+        yield return null;
     }
-
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PathFollower : MonoBehaviour
+public class putevi : MonoBehaviour
 {
     //Hardkodiran broj node-ova unutar unitya
     public int brojNodeaPath1 = 0;
@@ -25,14 +25,12 @@ public class PathFollower : MonoBehaviour
     int CurrentNode;
     private Vector2 startPosition;
 
-
-
-    // Use this for initialization
+  
     void Start()
     {
 
         //random brzina kretanja po nodovima
-        MoveSpeed = Random.Range(1.2f, 1.5f);
+        MoveSpeed = Random.Range(3.5f, 5.5f);
         randomBroj = Random.Range(1, 5); // {1,4} ukljuceni brojevi
         Debug.Log("Random broj putanje je : " + randomBroj);
         //random biranje putanje kretanja
@@ -62,7 +60,8 @@ public class PathFollower : MonoBehaviour
     {
         Timer = 0;
         startPosition = Player.transform.position;
-        if(CurrentNode == brojNodeaPathTEMP - 1)
+
+        if (CurrentNode == brojNodeaPathTEMP - 1)
         {
             CurrentNode = 0;
         }
@@ -78,7 +77,8 @@ public class PathFollower : MonoBehaviour
 
         if (Player.transform.position != CurrentPositionHolder)
         {
-            Player.transform.position = Vector3.Lerp(startPosition, CurrentPositionHolder, Timer);
+            //Player.transform.position = Vector3.Lerp(startPosition, CurrentPositionHolder, Timer);
+            Player.transform.position = Vector3.MoveTowards(startPosition, CurrentPositionHolder, Timer);
         }
         else
         {
@@ -90,5 +90,7 @@ public class PathFollower : MonoBehaviour
             }
         }
     }
+
+    
 
 }

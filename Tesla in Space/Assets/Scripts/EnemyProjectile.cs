@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyProjectile : MonoBehaviour
 {
@@ -11,6 +12,13 @@ public class EnemyProjectile : MonoBehaviour
     void Start()
     {
         rb.velocity = transform.up * speed;
+
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "level3")
+        {
+            speed = 35f;
+            damage = 20;
+        }
 
     }
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -25,6 +33,11 @@ public class EnemyProjectile : MonoBehaviour
         }
         //Enemy ship projektili se ne unistiavaju prilikom sudara sa projektilom naseg shipa
         if (hitInfo.gameObject.name == "Projectile(Clone)")
+        {
+            return;
+        }
+
+        if (hitInfo.gameObject.tag == "boss")
         {
             return;
         }

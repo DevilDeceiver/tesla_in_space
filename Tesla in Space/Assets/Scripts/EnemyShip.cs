@@ -2,46 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemyShip : MonoBehaviour
 {
     public EnemyShip instance;
     public int health = 200;
-
-    public float accelerationTime = 2f;
-    public float maxSpeed = 5f;
     private float timeLeft;
-    private Vector2 movement;
 
     private Rigidbody2D rb2d;
 
-    
+    public Text gameCompleted;
+
+    public float WaitTime = 2.0f;
+
 
     void Start()
     {
+        gameCompleted.text = "";
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
 
- 
-
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "level2")
+        {
+           if (gameObject.name == "ship2") {
+            health = 350;
+                }
+        }
     }
+
     public void TakeDamage(int damage)
     {
         health -= damage;
         if (health <= 0)
         {
-            Level2Controller.instance.PokreniSpawn();
             Die();
 
         }
     }
     void Die()
     {
-        StartCoroutine(Level2Controller.instance.coroutineB());
         Destroy(gameObject);
+        PlayerController.instance.brojBrodovaLv2++;
         Score.instance.brojBodova += 25;
         Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
-            
+        
+        if (PlayerController.instance.brojBrodovaLv2 == 3)
+        {
+            Level2Controller.instance.ucitajLevel3();
+        }
     }
 
     //Izbjegavanje enemyShip collisiona, za sad beskorisno
@@ -53,6 +63,7 @@ public class EnemyShip : MonoBehaviour
             return;
         }
     }
-       
+
+
 
 }

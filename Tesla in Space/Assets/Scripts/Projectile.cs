@@ -31,7 +31,12 @@ public class Projectile : MonoBehaviour
         
         Enemy enemy = hitInfo.GetComponent<Enemy>();
         EnemyShip enemyShip = hitInfo.GetComponent<EnemyShip>();
+        EnemyBoss boss = hitInfo.GetComponent<EnemyBoss>();
 
+        if (boss != null)
+        {
+            boss.TakeDamage(damage);
+        }
         if (enemyShip != null)
         {
             enemyShip.TakeDamage(damage);

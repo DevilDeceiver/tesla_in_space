@@ -22,7 +22,7 @@ public class EnemyShooting : MonoBehaviour
         while (true)
         {
         //enemy ship firerate, 1000ms
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.33f);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 180);
             Instantiate(projectilePrefab, firePointTEMP.position, firePoint.rotation);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 0);
