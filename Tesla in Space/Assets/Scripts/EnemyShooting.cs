@@ -9,6 +9,9 @@ public class EnemyShooting : MonoBehaviour
     public GameObject projectilePrefab;
     private float timer = 2f;
 
+    public AudioClip EnemyMusic;
+    public AudioSource EnemySource;
+
     private void Start()
     {
         StartCoroutine(coroutineA());
@@ -21,8 +24,11 @@ public class EnemyShooting : MonoBehaviour
 
         while (true)
         {
-        //enemy ship firerate, 1000ms
-        yield return new WaitForSeconds(0.33f);
+
+            //enemy ship firerate, 1000ms
+            EnemySource.clip = EnemyMusic;
+            EnemySource.Play();
+            yield return new WaitForSeconds(0.70f);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 180);
             Instantiate(projectilePrefab, firePointTEMP.position, firePoint.rotation);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 0);

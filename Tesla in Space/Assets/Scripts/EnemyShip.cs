@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class EnemyShip : MonoBehaviour
 {
+
+    public AudioClip MeteorMusic;
+    public AudioSource MeteorSource;
+
     public EnemyShip instance;
     public int health = 200;
     private float timeLeft;
@@ -19,7 +23,7 @@ public class EnemyShip : MonoBehaviour
 
     void Start()
     {
-        gameCompleted.text = "";
+        
         rb2d = GetComponent<Rigidbody2D>();
         instance = this;
 
@@ -43,12 +47,14 @@ public class EnemyShip : MonoBehaviour
     }
     void Die()
     {
-        Destroy(gameObject);
-        PlayerController.instance.brojBrodovaLv2++;
-        Score.instance.brojBodova += 25;
-        Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
+        MeteorSource.clip = MeteorMusic;
+        MeteorSource.Play();
+        Destroy(this.gameObject);
+        PlayerController.brojBrodovaLv2++;
+        Score.brojBodova += 25;
+        Score.rezultatText.text = "Score: " + Score.brojBodova.ToString();
         
-        if (PlayerController.instance.brojBrodovaLv2 == 3)
+        if (PlayerController.brojBrodovaLv2 == 3)
         {
             Level2Controller.instance.ucitajLevel3();
         }

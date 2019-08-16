@@ -2,12 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemyBoss : MonoBehaviour
 {
+
+
+    public AudioClip ShootingMusic;
+    public AudioSource ShootingSource;
+
+
+   
     public EnemyBoss instance;
-    public int health = 0;
+    public float health = 1200f;
     private float timeLeft;
+    //public static Scene level = SceneManager.GetActiveScene().name;
+
+    public Slider bossSlider;
 
     private Rigidbody2D rb2d;
 
@@ -15,12 +26,20 @@ public class EnemyBoss : MonoBehaviour
 
     public Text gameCompleted;
 
+    private GameObject obj;
+
+   
+
     void Start()
     {
+        
+        ShootingSource.clip = ShootingMusic;
+        ShootingSource.Play();
+        bossSlider = GameObject.Find("BossSlider").GetComponent<Slider>();
+        print(bossSlider);
         gameCompleted.text = "";
         rb2d = GetComponent<Rigidbody2D>();
-        instance = this;
-        health = 1200;
+
 
 
     }
@@ -28,24 +47,37 @@ public class EnemyBoss : MonoBehaviour
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Debug.Log("Boss dbiva damage");
+
+       
+        bossSlider.value = health;
+        print("Boss dbiva damage");
         if (health <= 0)
         {
-            Die();
+            StartCoroutine(Die(3f));
 
         }
     }
-    void Die()
-    {
-        gameCompleted.text = "Game Completed\nCongratulations";
-        Debug.Log("ubijen boss");
-        Destroy(gameObject);
-        PlayerController.instance.brojBrodovaLv2++;
-        Score.instance.brojBodova += 225;
-        Score.instance.rezultatText.text = "Score: " + Score.instance.brojBodova.ToString();
 
-        //end game, load credits scenu
+    public void Die()
+    {
+        StartCoroutine(Die(3f));
+    }
+
+
+    IEnumerator Die(float delay)
+    {
+        ShootingSource.Stop();
+        SceneManager.LoadScene("ElonMusk");
+        Destroy(gameObject);
+        PlayerController.brojBrodovaLv2++;
+        Score.brojBodova += 225;
+        Score.rezultatText.text = "Score: " + Score.brojBodova.ToString();
+        yield return new WaitForSeconds(delay);
         
+        yield return null;
+        //SceneManager.LoadScene("MainMenu");
+        //end game, load credits scenu
+
     }
 
 }

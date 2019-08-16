@@ -12,6 +12,10 @@ public class EnemyBossShooting : MonoBehaviour
     public GameObject projectilePrefab;
     private float timer = 2f;
 
+
+    public AudioClip ShootingMusic;
+    public AudioSource ShootingSource;
+
     private void Start()
     {
         StartCoroutine(coroutineA());
@@ -26,6 +30,11 @@ public class EnemyBossShooting : MonoBehaviour
 
         while (true)
         {
+
+            ShootingSource.clip = ShootingMusic;
+            ShootingSource.volume = 0.3f;
+            ShootingSource.Play();
+
             //enemy Boss firerate, 1000ms
             yield return new WaitForSeconds(0.4f);
             firePointTEMP.rotation = Quaternion.Euler(0, 0, 180);

@@ -4,18 +4,34 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class level1Controller : MonoBehaviour
 {
     public Text levelComplete;
     public Text timeLeftText;
     public float timeLeft = 30;
     public static level1Controller instance;
+
+    public AudioClip BackgroundMusic;
+    public AudioSource MusicSource;
+
+
+   
+
     // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+        timeLeftText = GameObject.Find("TimeLeft").GetComponent<Text>();
+    }
+    void Start()
+
+    {
+        MusicSource.clip = BackgroundMusic;
+        MusicSource.Play();
         levelComplete.text = "";
         timeLeftText.text = "Preostalo vrijeme: " + Mathf.RoundToInt(timeLeft);
-        
+     
         instance = this;
         
     }
@@ -26,16 +42,17 @@ public class level1Controller : MonoBehaviour
         timeLeft = timeLeft - Time.deltaTime;
         if (timeLeft < 0)
         {
+            MusicSource.Stop();
             timeLeft = 0;
             StartCoroutine(UcitajLevel2(3f));
         }
         // Koristi se Mathf.RountToInt kako bi vrijeme bilo bez decimalnih brojeva
-        timeLeftText.text = "Preostalo vrijeme: " + Mathf.RoundToInt(timeLeft);
+        timeLeftText.text = "Time left: " + Mathf.RoundToInt(timeLeft);
     }
 
     IEnumerator UcitajLevel2(float delay)
     {
-        PlayerPrefs.SetInt("Player Score", Score.instance.brojBodova);
+        PlayerPrefs.SetInt("Player Score", Score.brojBodova);
         levelComplete.text = "LEVEL 1 COMPLETE";
         yield return new WaitForSeconds(delay);
         levelComplete.text = "";

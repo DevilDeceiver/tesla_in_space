@@ -8,28 +8,35 @@ public class Score : MonoBehaviour
 {
 
     //Zapisivanje bodova
-    public Text rezultatText;
-    public int brojBodova;
-    public static Score instance;
+    public static Text rezultatText;
+    public static int brojBodova = 0;
+
+    
 
     //zapisivanje health-a
-    public Slider healthSlider;
+    public static Slider healthSlider;
+
+    private void Awake()
+    {
+        rezultatText = GameObject.Find("Score").GetComponent<Text>();
+        healthSlider= GameObject.Find("Slider").GetComponent<Slider>();
+    }
 
     private void Start()
     {
         //ako je prva scena, resetira se broj osvojenih bodova, obavezno
         Scene scene = SceneManager.GetActiveScene();
-        instance = this;
+     
         if (scene.name == "level1")
         {
            PlayerPrefs.SetInt("Player Score", 0);
         }
         
         brojBodova = 0;
-        instance = this;
+     
         brojBodova = PlayerPrefs.GetInt("Player Score"); ;
         rezultatText.text = "Score: " + brojBodova;
-        healthSlider.value = PlayerController.instance.health;
+        healthSlider.value = PlayerController.health;
 
     }
 
